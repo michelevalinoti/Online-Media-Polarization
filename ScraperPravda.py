@@ -24,7 +24,7 @@ import datetime
 import Scraper
 #%%
 
-class RTScraper:
+class ScraperRT:
     
     # 8 main categories of news in RussiaToday: the English words are recognized also in the site in original language
     CATEGORIES = ['world', 'russia', 'ussr', 'business', 'sport', 'science', 'nopolitics', 'opinion']
@@ -53,7 +53,7 @@ class RTScraper:
     def findArticles(self, dataframe, url):
     
         # get response using proxies
-        response = Scraper.getResponseProxies(url, self.hearders, self.proxies)
+        response = Scraper.getResponseProxies(url, self.headers, self.proxies)
         # filter source for articles
         soup = BeautifulSoup(response.content, 'lxml')
         articles = soup.find_all('li', class_="listing__column listing__column_all-new listing__column_js")
@@ -108,7 +108,7 @@ class RTScraper:
         return dataframe
             
     def saveDataFrameGeneric(self, date, category = 'russia'):
-            
+        
         # save articles in path
         path = '/Users/michelev/russia/articles/RT/' + date.strftime('%Y-%m-%d')
         
@@ -124,12 +124,14 @@ class RTScraper:
             
 #%%
 
-RT = RTScraper()
-dates = pd.date_range(start="2021-01-01",end="2021-03-31")
+RT = ScraperRT()
+dates = pd.date_range(start='2021-01-01', end='2021-12-31', inclusive = 'both')
 dates = list(dates)
 
-with ThreadPoolExecutor(max_workers=10) as executor:
-            executor.map(lambda date: RT.saveDataFrameGeneric(date, 'world'),    
+for category in RT.CATEGORIES:
+    
+    with ThreadPoolExecutor(max_workers=10) as executor:
+            executor.map(lambda date: RT.saveDataFrameGeneric(date, category),    
             dates,
             timeout = 3600)
 
