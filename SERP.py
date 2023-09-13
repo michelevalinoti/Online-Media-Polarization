@@ -11,8 +11,7 @@ import json
 
 import Scraper
 
-proxies = {'http': 'http://brd-customer-hl_33f39684-zone-novserp:zf5trt1u8njy@zproxy.lum-superproxy.io:22225',
-           'https': 'http://brd-customer-hl_33f39684-zone-novserp:zf5trt1u8njy@zproxy.lum-superproxy.io:22225'}
+proxies = import_proxies()
 
 
 opener = Scraper.getOpenerSERP(proxies)

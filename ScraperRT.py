@@ -29,8 +29,7 @@ class ScraperRT:
     # 8 main categories of news in RussiaToday: the English words are recognized also in the site in original language
     CATEGORIES = ['world', 'russia', 'ussr', 'business', 'sport', 'science', 'nopolitics', 'opinion']
     
-    proxies = {'http': 'http://lum-customer-hl_33f39684-zone-zone1:9tzrgl2f2e55@zproxy.lum-superproxy.io:22225',
-               'https': 'http://lum-customer-hl_33f39684-zone-zone1:9tzrgl2f2e55@zproxy.lum-superproxy.io:22225'}
+    proxies = import_proxies()
     
     headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36"
