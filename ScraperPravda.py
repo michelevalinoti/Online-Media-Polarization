@@ -53,7 +53,7 @@ class ScraperPravda:
         for article in articles:
                     
             # find url of the article
-            link = re.findall('(?<=href=").*(?=")', article.decode())[0]
+            link = re.findall('(?<=href=").*(?="/)', article.decode())[0]
             
             title = article.find('a').text.strip()
             

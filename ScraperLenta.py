@@ -132,7 +132,7 @@ class ScraperLenta:
 #%%
 
 Lenta = ScraperLenta()
-dates = pd.date_range(start='2021-01-01', end='2021-12-31', inclusive = 'both')
+dates = pd.date_range(start='2020-01-01', end='2021-12-31', inclusive = 'both')
 dates = list(dates)
 
 for category in Lenta.CATEGORIES:
